@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字迷宫</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 95vw;
+            width: 100%;
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #hexagonCanvas {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #6ab7ff 0%, #4a90e2 100%);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        #difficultySelect {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #status,
+        #info {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #info {
+            color: #555;
+            font-size: 12px;
+        }
+
+        #gameStats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            #controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #controls>* {
+                margin-bottom: 10px;
+            }
+
+            #gameStats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #gameStats>* {
+                margin-bottom: 5px;
+            }
+        }
+
+        #gameCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #fireworksCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="hexagonCanvas"></canvas>
+        <div id="controls">
+            <select id="difficultySelect">
+                <option value="easy">简单</option>
+                <option value="medium">中等</option>
+                <option value="hard">复杂</option>
+            </select>
+            <button id="newGame">新游戏</button>
+            <button id="undoButton">撤销</button>
+        </div>
+        <div id="gameStats">
+            <span id="timeDisplay">时间: 0s</span>
+            <span id="stepsDisplay">步数: 0</span>
+            <span id="scoreDisplay">得分: 0</span>
+        </div>
+        <div id="status"></div>
+        <div id="info">绿色: 起点 | 红色: 终点 | 黄色: 路径 | 点击空白六边形填数字</div>
+    </div>
+    <script src="number_maze13.js"></script>
+</body>
+
+</html>
