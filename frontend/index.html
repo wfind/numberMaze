@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字迷宫</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="hexagonCanvas"></canvas>
+        <div id="currentUserDisplay">当前用户: 访客</div>
+        <div id="controls">
+            <select id="difficultySelect">
+                <option value="easy">简单</option>
+                <option value="medium">中等</option>
+                <option value="hard">复杂</option>
+            </select>
+            <button id="newGame">新游戏</button>
+            <button id="undoButton">撤销</button>
+            <button id="showScores">查看分数</button>
+            <button id="showLeaderboard">排行榜</button>
+            <button id="manageUsers">用户</button>
+        </div>
+        <div id="gameStats">
+            <span id="timeDisplay">时间: 0s</span>
+            <span id="stepsDisplay">步数: 0</span>
+            <span id="scoreDisplay">得分: 0</span>
+        </div>
+        <div id="status"></div>
+        <div id="info">绿色: 起点 | 红色: 终点 | 黄色: 路径 | 点击空白六边形填数字</div>
+    </div>
+    <div id="scoreModal" class="modal">
+        <h3>分数记录</h3>
+        <div class="modal-content">
+            <ul id="scoreList" class="user-list"></ul>
+        </div>
+        <div class="modal-buttons">
+            <button id="closeScores">关闭</button>
+        </div>
+    </div>
+    <div id="leaderboardModal" class="modal">
+        <h3>排行榜</h3>
+        <div class="modal-content">
+            <div class="filter-controls">
+                <select id="leaderboardDifficultyFilter">
+                    <option value="all">所有难度</option>
+                    <option value="easy">简单</option>
+                    <option value="medium">中等</option>
+                    <option value="hard">复杂</option>
+                </select>
+                <select id="leaderboardLimitFilter">
+                    <option value="10">前10名</option>
+                    <option value="20">前20名</option>
+                    <option value="50">前50名</option>
+                    <option value="100">前100名</option>
+                </select>
+            </div>
+            <table id="leaderboardTable" class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>用户</th>
+                        <th>难度</th>
+                        <th>分数</th>
+                        <th>时间</th>
+                        <th>步数</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                    <!-- Table rows will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-buttons">
+            <button id="closeLeaderboard">关闭</button>
+        </div>
+    </div>
+    <div id="userModal" class="modal">
+        <h3>用户管理</h3>
+        <div class="modal-content">
+            <div class="form-group">
+                <input type="text" id="newUserName" placeholder="输入新用户名称">
+                <button id="addUser">添加用户</button>
+            </div>
+            <h4>选择用户:</h4>
+            <ul id="userList" class="user-list"></ul>
+        </div>
+        <div class="modal-buttons">
+            <button id="closeUserModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- JavaScript imports -->
+    <script src="js/services/api-service.js"></script>
+    <script src="js/models/firework.js"></script>
+    <script src="js/models/user-manager.js"></script>
+    <script src="js/models/number-maze.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>

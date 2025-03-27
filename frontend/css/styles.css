@@ -1,0 +1,295 @@
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 600px;
+    margin: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    max-width: 95vw;
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hexagonCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #6ab7ff 0%, #4a90e2 100%);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#difficultySelect {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#status,
+#info {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#info {
+    color: #555;
+    font-size: 12px;
+}
+
+#gameStats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    #controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #controls>* {
+        margin-bottom: 10px;
+    }
+
+    #gameStats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #gameStats>* {
+        margin-bottom: 5px;
+    }
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#fireworksCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    max-width: 90%;
+    width: 400px;
+}
+
+.modal h3 {
+    margin-top: 0;
+    color: #4a90e2;
+}
+
+.modal-content {
+    margin-bottom: 20px;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 10px 0;
+}
+
+.user-list li {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    background: #f0f8ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.user-list li:hover {
+    background: #e0f0ff;
+}
+
+.user-list li.active {
+    background: #4285f4;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#currentUserDisplay {
+    font-weight: bold;
+    color: #4a90e2;
+    margin-top: 5px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: block;
+}
+
+.leaderboard-table th, 
+.leaderboard-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+    background-color: #f0f8ff;
+    position: sticky;
+    top: 0;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #f0f8ff;
+}
+
+.rank {
+    font-weight: bold;
+    text-align: center;
+}
+
+.rank-1 {
+    color: #ffd700; /* Gold */
+}
+
+.rank-2 {
+    color: #c0c0c0; /* Silver */
+}
+
+.rank-3 {
+    color: #cd7f32; /* Bronze */
+}
+
+/* 添加加载状态样式 */
+.loading {
+    text-align: center;
+    padding: 10px;
+    color: #666;
+    font-style: italic;
+}
+
+.loading::after {
+    content: "...";
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60% {
+        content: "...";
+    }
+    80%, 100% {
+        content: "";
+    }
+}
+
+/* 错误状态样式 */
+.error {
+    color: #e53935;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
