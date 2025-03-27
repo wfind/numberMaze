@@ -1,0 +1,43 @@
+# Server Configuration
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# H2 Database Configuration
+spring:
+  datasource:
+    url: "jdbc:h2:file:./data/numbermaze;DB_CLOSE_ON_EXIT=FALSE"
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  mvc:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "GET,POST,PUT,DELETE"
+      allowed-headers: "*"
+  web:
+    cors:
+      allowed-origins: "http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allow-credentials: true
+      max-age: 3600
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.numbermaze: DEBUG
+    org.springframework.web: DEBUG
